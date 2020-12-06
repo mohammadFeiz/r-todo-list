@@ -107,4 +107,4 @@ export default class App extends Component {
 }
 
 ```
-[Demo](https://stackblitz.com/edit/react-kumdmn?embed=1&file=src/r-todo-list.js)
+[Demo](https://stackblitz.com/edit/r-todo-list?embed=1&file=src/App.js)
