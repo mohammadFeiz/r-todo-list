@@ -61,34 +61,15 @@ var RTodoList = /*#__PURE__*/function (_Component) {
     _this.state = {
       renameText: false
     };
+    _this.translate = _this.props.translate ? function (text) {
+      return _this.props.translate(text);
+    } : function (text) {
+      return text;
+    };
     return _this;
   }
 
   _createClass(RTodoList, [{
-    key: "translate",
-    value: function translate(key) {
-      var globalization = this.props.globalization;
-      var dictionary = {
-        RenameList: {
-          en: 'Rename List',
-          fa: 'تغییر نام لیست'
-        },
-        RemoveList: {
-          en: 'Remove List',
-          fa: 'حذف لیست'
-        },
-        AddATask: {
-          en: 'Add A Task',
-          fa: 'افزودن اقدام'
-        },
-        Completed: {
-          en: 'Completed',
-          fa: 'انجام شده'
-        }
-      };
-      return dictionary[key][globalization];
-    }
-  }, {
     key: "getValueByField",
     value: function getValueByField(obj, field, def) {
       if (!field || field === null) {
@@ -263,7 +244,7 @@ var RTodoListHeader = /*#__PURE__*/function (_Component2) {
       if (renameList) {
         editItems.push({
           text: /*#__PURE__*/_react.default.createElement(DropdownItem, {
-            text: translate('RenameList'),
+            text: translate('Rename List'),
             icon: "rename"
           }),
           onClick: function onClick() {
@@ -277,7 +258,7 @@ var RTodoListHeader = /*#__PURE__*/function (_Component2) {
       if (removeList) {
         editItems.push({
           text: /*#__PURE__*/_react.default.createElement(DropdownItem, {
-            text: translate('RemoveList'),
+            text: translate('Remove List'),
             icon: "remove"
           }),
           onClick: function onClick() {
@@ -464,7 +445,7 @@ var RTodoListAdd = /*#__PURE__*/function (_Component4) {
             value: e.target.value
           });
         },
-        placeholder: translate('AddATask')
+        placeholder: translate('Add A Task')
       })));
     }
   }]);

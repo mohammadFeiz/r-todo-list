@@ -8,17 +8,9 @@ export default class RTodoList extends Component{
   constructor(props){
     super(props);
     this.state = {renameText:false} 
+    this.translate = this.props.translate?(text)=>this.props.translate(text):(text)=>text
   }
-  translate(key) {
-    var { globalization } = this.props;
-    var dictionary = {
-        RenameList:{en:'Rename List',fa:'تغییر نام لیست'},
-        RemoveList:{en:'Remove List',fa:'حذف لیست'},
-        AddATask:{en:'Add A Task',fa:'افزودن اقدام'},
-        Completed:{en:'Completed',fa:'انجام شده'},
-    }
-    return dictionary[key][globalization];
-  }
+
   getValueByField(obj, field, def) {
     if (!field || field === null) { return undefined; }
     var fieldString = typeof field === 'function' ? field(obj) : field;
@@ -100,13 +92,13 @@ class RTodoListHeader extends Component{
     var editItems = [];
     if(renameList){
       editItems.push({
-        text:<DropdownItem text={translate('RenameList')} icon='rename'/>,
+        text:<DropdownItem text={translate('Rename List')} icon='rename'/>,
         onClick:()=>SetState({renameText:getValueByField(list,listDataset.name)})
       })
     }
     if(removeList){
       editItems.push({
-        text:<DropdownItem text={translate('RemoveList')} icon='remove'/>,
+        text:<DropdownItem text={translate('Remove List')} icon='remove'/>,
         onClick:()=>removeList()
       })
     }
@@ -203,7 +195,7 @@ class RTodoListAdd extends Component{
       <div className='r-todo-list-add' onKeyDown={this.keyDown.bind(this)}>
         <div className='r-todo-list-add-icon' onClick={this.addTask.bind(this)}>{this.getIcon('plus')}</div>
         <div className='r-todo-list-add-name'>
-          <input type='text' value={value} onChange={(e)=>this.setState({value:e.target.value})} placeholder={translate('AddATask')}/>
+          <input type='text' value={value} onChange={(e)=>this.setState({value:e.target.value})} placeholder={translate('Add A Task')}/>
         </div>  
       </div>
     )
