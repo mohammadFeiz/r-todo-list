@@ -98,8 +98,15 @@ export default class App extends Component {
           className={'list1'}
           // direction
           rtl={false}
-          // language ('en' or 'fa')
-          globalization='en'
+          // send inside texts translate
+          translate={(text)=>{
+            return {
+              'Rename List':'تغییر نام لیست',
+              'Remove List':'حذف لیست',
+              'Add A Task':'افزودن اقدام',
+              'Completed':'انجام شده',
+            }[text] 
+          }}
         />
       </div>
     );
