@@ -125,8 +125,7 @@
 .r-todo-list-task-completed{
   width:16px;
   height:16px;
-  border:2px solid var(--r-todo-list-color);
-  border-radius:100%;
+  border:1px solid var(--r-todo-list-color);
   cursor:pointer;
 }
 .r-todo-list-task-completed.completed{
