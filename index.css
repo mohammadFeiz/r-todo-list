@@ -145,6 +145,21 @@
 }
 .r-todo-list-task-name{
   flex:1;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+}
+.r-todo-list-task-name-title{
+  flex:1;
+  font-size:100%;
+  display:flex;
+  align-items:center;
+}
+.r-todo-list-task-name-subtitle{
+  font-size:90%;
+  flex:0.7;
+  display:flex;
+  align-items:center;
 }
 .r-todo-list-task-empty{
   width:16px;

@@ -265,13 +265,13 @@ class RTodoListTask extends Component{
     onTaskClick(task);
   }
   render(){
-    var {activeTaskId,editTask,getValueByField,setValueByField,taskDataset} = this.context;
+    var {activeTaskId,editTask,getValueByField,setValueByField,taskDataset,getSubTitle = ()=>false} = this.context;
     var {task} = this.props;
     var completed = getValueByField(task,taskDataset.completed,false);
-    var important = getValueByField(task,taskDataset.important,false);
     var name = getValueByField(task,taskDataset.name);
     var id = getValueByField(task,taskDataset.id);
     var active = activeTaskId === id;
+    var subTitle = getSubTitle(task);
     return (
       <div className={'r-todo-list-task' + (active?' active':'')} onClick={this.click.bind(this)}>
         <div 
@@ -283,18 +283,10 @@ class RTodoListTask extends Component{
           }}
         ></div>
         <div className='r-todo-list-task-empty'></div>
-        <div className='r-todo-list-task-name'>{name}</div>
-        {
-          false && 
-          <div 
-          className={'r-todo-list-task-important'}
-          onClick={()=>{
-            var newTask = JSON.parse(JSON.stringify(task));
-            setValueByField(newTask,taskDataset.important,!important)
-            editTask(newTask);
-          }}
-        >{getIcon(important?'importantFill':'important')}</div>
-        }
+        <div className='r-todo-list-task-name'>
+          <div className='r-todo-list-task-name-title'>{name}</div>
+          {subTitle && <div className='r-todo-list-task-name-subtitle'>{subTitle}</div>}
+        </div>
       </div>
     )
   }

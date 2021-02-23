@@ -41,7 +41,7 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -590,13 +590,17 @@ var RTodoListTask = /*#__PURE__*/function (_Component6) {
           editTask = _this$context6.editTask,
           getValueByField = _this$context6.getValueByField,
           setValueByField = _this$context6.setValueByField,
-          taskDataset = _this$context6.taskDataset;
+          taskDataset = _this$context6.taskDataset,
+          _this$context6$getSub = _this$context6.getSubTitle,
+          getSubTitle = _this$context6$getSub === void 0 ? function () {
+        return false;
+      } : _this$context6$getSub;
       var task = this.props.task;
       var completed = getValueByField(task, taskDataset.completed, false);
-      var important = getValueByField(task, taskDataset.important, false);
       var name = getValueByField(task, taskDataset.name);
       var id = getValueByField(task, taskDataset.id);
       var active = activeTaskId === id;
+      var subTitle = getSubTitle(task);
       return /*#__PURE__*/_react.default.createElement("div", {
         className: 'r-todo-list-task' + (active ? ' active' : ''),
         onClick: this.click.bind(this)
@@ -611,14 +615,11 @@ var RTodoListTask = /*#__PURE__*/function (_Component6) {
         className: "r-todo-list-task-empty"
       }), /*#__PURE__*/_react.default.createElement("div", {
         className: "r-todo-list-task-name"
-      }, name), false && /*#__PURE__*/_react.default.createElement("div", {
-        className: 'r-todo-list-task-important',
-        onClick: function onClick() {
-          var newTask = JSON.parse(JSON.stringify(task));
-          setValueByField(newTask, taskDataset.important, !important);
-          editTask(newTask);
-        }
-      }, getIcon(important ? 'importantFill' : 'important')));
+      }, /*#__PURE__*/_react.default.createElement("div", {
+        className: "r-todo-list-task-name-title"
+      }, name), subTitle && /*#__PURE__*/_react.default.createElement("div", {
+        className: "r-todo-list-task-name-subtitle"
+      }, subTitle)));
     }
   }]);
 
